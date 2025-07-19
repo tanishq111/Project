@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans">
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Tanishq Soni</h1>
+      <nav class="space-x-4">
+        <a href="#about" class="text-blue-600 hover:underline">About</a>
+        <a href="#projects" class="text-blue-600 hover:underline">Projects</a>
+        <a href="#contact" class="text-blue-600 hover:underline">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-10">
+    <section id="about" class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">About Me</h2>
+      <p>Hello! I'm a web developer passionate about building responsive and interactive web applications using HTML, CSS, JavaScript, and TailwindCSS.</p>
+    </section>
+
+    <section id="projects" class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white p-4 rounded shadow">
+          <h3 class="text-lg font-bold mb-2">Portfolio Website</h3>
+          <p>A basic portfolio site built with HTML and TailwindCSS to showcase my skills and projects.</p>
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+          <h3 class="text-lg font-bold mb-2">Todo App</h3>
+          <p>A simple todo list application built with JavaScript to manage daily tasks.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="text-xl font-semibold mb-4">Contact</h2>
+      <p>Email: <a href="mailto:tanishq@example.com" class="text-blue-600">tanishq@example.com</a></p>
+    </section>
+  </main>
+
+  <footer class="bg-white mt-10 p-4 text-center text-sm text-gray-500">
+    © 2025 Tanishq Soni. All rights reserved.
+  </footer>
+</body>
+</html>
