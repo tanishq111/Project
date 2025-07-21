@@ -1,54 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body class="bg-black-100 text-gray-900 font-sans">
-  <header class="bg-white shadow">
-    <div class="container mx-auto px-4 py-6 flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Raj Kumar Dutta</h1>
-      <nav class="space-x-4">
-        <a href="#about" class="text-blue-600 hover:underline">About</a>
-        <a href="#projects" class="text-blue-600 hover:underline">Projects</a>
-        <a href="#contact" class="text-blue-600 hover:underline">Contact</a>
-      </nav>
+    <head>
+        <title>RealTime Dashboard</title>
+        <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .widget {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .widget:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .widget h3 {
+            margin: 0 0 15px 0;
+            color: #333;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #4a90e2;
+            margin: 10px 0;
+        }
+        
+        .loading {
+            opacity: 0.6;
+            position: relative;
+        }
+        
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .error {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+        }
+        
+        .controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .status {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+    </style>
+    </head>
+    <body>
+       <div class="status">
+        <h1>📊 Real-time Dashboard</h1>
+        <p>Updates every 2 seconds • <span id="lastUpdate">Never</span></p>
     </div>
-  </header>
-
-  <main class="container mx-auto px-4 py-10">
-    <section id="about" class="mb-10">
-      <h2 class="text-xl font-semibold mb-4">About Me</h2>
-      <p>Hello! I'm a software developer passionate about building microservices and creating user interfaces using HTML, CSS, JavaScript, and TailwindCSS.</p>
-    </section>
-
-    <section id="projects" class="mb-10">
-      <h2 class="text-xl font-semibold mb-4">Projects</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-white p-4 rounded shadow">
-          <h3 class="text-lg font-bold mb-2">Portfolio Website</h3>
-          <p>A basic portfolio site built with HTML and TailwindCSS to showcase my skills and projects.</p>
-        </div>
-        <div class="bg-white p-4 rounded shadow">
-          <h3 class="text-lg font-bold mb-2">Todo App</h3>
-          <p>A simple todo list application built with JavaScript to manage daily tasks.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2 class="text-xl font-semibold mb-4">Contact</h2>
-      <p>Email: <a href="mailto:ngtrainerdeveloper@gmail.com" class="text-blue-600">ngtrainerdeveloper@gmail.com</a></p>
-    </section>
-  </main>
-
-  <footer class="bg-white mt-10 p-4 text-center text-sm text-gray-500">
-    © 2025 Raj Kumar Dutta. All rights reserved.
-  </footer>
-
-  <script></script>
-</body>
+    
+    <div class="controls">
+        <button onclick="dashboard.startUpdating()">▶️ Start Updates</button>
+        <button onclick="dashboard.stopUpdating()">⏸️ Stop Updates</button>
+        <button onclick="dashboard.fetchData()">🔄 Refresh Now</button>
+    </div>
+        <div id="dashboard"></div>
+        <script src="script.js"></script>
+    </body>
 </html>
